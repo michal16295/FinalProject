@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment, useEffect } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Provider } from "react-redux";
+import store from "./store";
+import http from "./services/httpService";
+import { loadUser } from "./action/auth";
+import HomePage from "./layout/HomePage";
+import NavBar from "./layout/NavBar";
+import Login from "./components/auth/Login";
+import Register from "./components/auth/Register";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import "./App.css";
+
+if (localStorage.token) {
+  http.setJwt(localStorage.token);
 }
+const App = () => {
+  useEffect(() => {
+    store.dispatch(loadUser());
+  }, []);
+  return (
+    <Provider store={store}>
+      <Router>
+        <Fragment>
+          <NavBar />
+          <Route exact path="/" component={HomePage}></Route>
+          <section className="container">
+            <Switch>
+              <Route exact path="/login" component={Login}></Route>
+              <Route exact path="/register" component={Register}></Route>
+            </Switch>
+          </section>
+        </Fragment>
+      </Router>
+    </Provider>
+  );
+};
 
 export default App;

@@ -36,3 +36,37 @@
     transform: rotate(360deg);
   }
 }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+li {
+  margin-top: 20 !important;
+}
+
+body {
+  font-family: "Raleway", sans-serif !important;
+  font-size: 1rem !important;
+  line-height: 1.6 !important;
+  background-color: #fff !important;
+  color: #333 !important;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+ul {
+  list-style: none !important;
+}
+
+/* Utilities */
+.container {
+  max-width: 1100px !important;
+  margin: auto !important;
+  overflow: hidden !important;
+  padding: 0 2rem !important;
+  margin-top: 6rem !important;
+  margin-bottom: 3rem !important;
+}
