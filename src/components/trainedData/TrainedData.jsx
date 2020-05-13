@@ -36,11 +36,11 @@ class TrainedData extends Component {
 
     const modelInfo = {
       model:
-        "/Users/michalbarski/final project/client/src/components/trainedData/model/model_meta.json",
+        "model/model.json",
       metadata:
-        "/Users/michalbarski/final project/client/src/components/trainedData/model/model.json",
+        "model/model_meta.json",
       weights:
-        "/Users/michalbarski/final project/client/src/components/trainedData/model/model.weights.bin",
+        "model/model.weights.bin",
     };
     console.log(modelInfo);
     console.log(this.brain.load(modelInfo, this.brainLoaded));
@@ -62,13 +62,13 @@ class TrainedData extends Component {
       }
       console.log(inputs);
       console.log(this.brain.classify(inputs, this.gotResult));
-      /* await this.brain
+      await this.brain
         .classify(inputs, (err, results) => {
           return results;
         })
         .then((results) => {
           console.log(results);
-        });*/
+        });
     } else {
       setTimeout(this.classifyPose, 100);
     }
@@ -76,11 +76,11 @@ class TrainedData extends Component {
   gotResult = (error, results) => {
     console.log("in gotResult");
     console.log(results);
-    /* if (results[0].confidence > 0.7) {
+    if (results[0].confidence > 0.7) {
       this.poseLabel = results[0].label.toUpperCase();
     }
     console.log(results[0].confidence);
-    this.classifyPose();*/
+    this.classifyPose();
   };
 
   draw = (p5) => {
