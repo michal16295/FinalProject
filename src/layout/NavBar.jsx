@@ -7,20 +7,18 @@ import "./homePage.css";
 
 const NavBar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
   const guestLinks = (
-    <ul>
-      <li>
-        <Link to="/register">Register</Link>
+    <Fragment>
+      <li class="fade-in wow" id="delay-2" data-wow-delay=".5s">
+        <Link to="/login">Login</Link>
       </li>
-      <li>
-        <Link to="/login">
-          <i className="fas fa-sign-in-alt"> </i> Login
-        </Link>
+      <li class="nav-end fade-in wow" id="delay-3" data-wow-delay=".5s">
+        <Link to="register">Register</Link>
       </li>
-    </ul>
+    </Fragment>
   );
 
   const authLink = (
-    <ul>
+    <Fragment>
       <li>
         <Link to="/currentUser">My Profile</Link>
       </li>
@@ -30,34 +28,26 @@ const NavBar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
           Logout
         </a>
       </li>
-    </ul>
+    </Fragment>
   );
   return (
     <div class="main-header">
       <nav>
         <h1 class="fade-in wow" data-wow-delay=".5s">
           <Link to="/">
-            <span class="title-color">Gym</span> Fix
+            <span class="title-color">Gym</span> Fix{" "}
           </Link>
+          {user && <span className="welcome"> Hello {user.userName}</span>}
         </h1>
-        <ul>
-          <li class="fade-in wow" id="delay-1" data-wow-delay=".5s">
-            <a href="index.html">Home</a>
-          </li>
-          <li class="fade-in wow" id="delay-2" data-wow-delay=".5s">
-            <Link to="/login">Login</Link>
-          </li>
-          <li class="nav-end fade-in wow" id="delay-3" data-wow-delay=".5s">
-            <Link to="register">Register</Link>
-          </li>
-        </ul>
+
+        <ul>{user ? authLink : guestLinks}</ul>
       </nav>
     </div>
   );
 };
 NavBar.propTypes = {
-  isAuthenticated: PropTypes.bool,
   logout: PropTypes.func.isRequired,
+  auth: PropTypes.object,
 };
 const mapStateToProps = (state) => ({
   auth: state.auth,

@@ -8,6 +8,8 @@ import HomePage from "./layout/HomePage";
 import NavBar from "./layout/NavBar";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
+import CollectData from "./components/collectData/CollectData";
+import TrainedData from "./components/trainedData/TrainedData";
 
 import "./App.css";
 
@@ -24,12 +26,13 @@ const App = () => {
         <Fragment>
           <NavBar />
           <Route exact path="/" component={HomePage}></Route>
-          <section className="container">
-            <Switch>
-              <Route exact path="/login" component={Login}></Route>
-              <Route exact path="/register" component={Register}></Route>
-            </Switch>
-          </section>
+
+          <Switch>
+            <Route exact path="/login" component={Login}></Route>
+            <Route exact path="/register" component={Register}></Route>
+            <Route exact path="/collectData" component={CollectData}></Route>
+            <Route exact path="/trainedData" component={TrainedData}></Route>
+          </Switch>
         </Fragment>
       </Router>
     </Provider>

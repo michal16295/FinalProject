@@ -45,6 +45,7 @@ export const register = (user) => async (dispatch) => {
       data: res.data,
     });
     localStorage.setItem("token", res.headers["x-auth-token"]);
+    dispatch(loadUser());
   } catch (err) {
     const errors = err.response.data;
 
